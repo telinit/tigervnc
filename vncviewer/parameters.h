@@ -37,6 +37,9 @@ extern rfb::BoolParameter dotWhenNoCursor;
 
 extern rfb::StringParameter passwordFile;
 
+extern rfb::StringParameter paramUsername;
+extern rfb::StringParameter paramPassword;
+
 extern rfb::BoolParameter autoSelect;
 extern rfb::BoolParameter fullColour;
 extern rfb::AliasParameter fullColourAlias;

@@ -75,6 +75,8 @@ void UserDialog::getUserPasswd(bool secure, std::string* user,
 {
   const char *passwordFileName(passwordFile);
 
+  bool done = false;
+
   assert(password);
   char *envUsername = getenv("VNC_USERNAME");
   char *envPassword = getenv("VNC_PASSWORD");
@@ -82,12 +84,12 @@ void UserDialog::getUserPasswd(bool secure, std::string* user,
   if(user && envUsername && envPassword) {
     *user = envUsername;
     *password = envPassword;
-    return;
+     done = true;
   }
 
   if (!user && envPassword) {
     *password = envPassword;
-    return;
+    done = true;
   }
 
   if (!user && passwordFileName[0]) {
@@ -103,6 +105,24 @@ void UserDialog::getUserPasswd(bool secure, std::string* user,
 
     *password = deobfuscate(obfPwd.data(), obfPwd.size());
 
+    done = true;
+  }
+
+  StringParameter *pUsr = (StringParameter *)Configuration::getParam("Username");
+  StringParameter *pPwd = (StringParameter *)Configuration::getParam("Password");
+
+
+  if ( user && pUsr && pUsr->getValueStr().length() ) {
+    *user = pUsr->getValueStr();
+    done = true;
+  }
+
+  if ( password && pPwd && pPwd->getValueStr().length() ) {
+    *password = pPwd->getValueStr();
+    done = true;
+  }
+
+  if (done) {
     return;
   }
 

@@ -1,3 +1,8 @@
+Changes
+==============
+
+* Add username and password command line parameters for viewer.
+
 About TigerVNC
 ==============
 

@@ -76,6 +76,12 @@ StringParameter passwordFile("PasswordFile",
                              "Password file for VNC authentication", "");
 AliasParameter passwd("passwd", "Alias for PasswordFile", &passwordFile);
 
+StringParameter paramUsername("Username",
+                         "User name to connect with.", "", ConfViewer);
+
+StringParameter paramPassword("Password",
+                         "Password in clear text.", "", ConfViewer);
+
 BoolParameter autoSelect("AutoSelect",
                          "Auto select pixel format and encoding. "
                          "Default if PreferredEncoding and FullColor are not specified.", 
